@@ -1,0 +1,35 @@
+.heading {
+  font-weight: 700;
+  margin: 2rem 0;
+}
+
+input {
+  width: 100%;
+  padding: 0.25rem;
+}
+.todo-container {
+  width: 80%;
+  margin: 0 auto;
+  text-align: left;
+}
+.rm-row {
+  margin: 1rem;
+}
+
+button {
+  min-width: 80px;
+}
+
+.welcomeMessage {
+  font-weight: bolder;
+  font-size: 26px;
+  margin: 4rem 0;
+}
+.svg {
+  font-size: 27px;
+}
+
+input {
+  border-radius: 10px;
+  border: 1px solid #127a25;
+}
