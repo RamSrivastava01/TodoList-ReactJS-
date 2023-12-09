@@ -13,7 +13,9 @@ const AddTodo = ({ onNewItem }) => {
   };
 
   const handleAddButtonClicked = () => {
-    onNewItem(todoName, dueDate);
+    if (todoName != "") {
+      onNewItem(todoName, dueDate);
+    }
     setDueDate("");
     setTodoName("");
   };
@@ -37,7 +39,7 @@ const AddTodo = ({ onNewItem }) => {
           className="btn btn-success"
           onClick={handleAddButtonClicked}
         >
-          <IoAddCircleOutline className="svg" />
+          <IoAddCircleOutline className="svg" disabled />
         </button>
       </div>
     </div>
