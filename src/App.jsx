@@ -24,14 +24,17 @@ function App() {
   const [todoItems, setTodoItems] = useState(initialTodoItems);
 
   const handleNewItem = (itemName, itemDueDate) => {
-    const newTodoItems = [
-      ...todoItems,
-      {
-        name: itemName,
-        dueDate: itemDueDate,
-      },
-    ];
-    setTodoItems(newTodoItems);
+    const newTodoItems = [...todoItems];
+    setTodoItems((currValue) => {
+      [
+        ...currValue,
+        {
+          name: itemName,
+          dueDate: itemDueDate,
+        },
+      ];
+      return newTodoItems;
+    });
   };
 
   const handleDeleteItem = (todoItemName) => {

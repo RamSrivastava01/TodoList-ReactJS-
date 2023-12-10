@@ -1,48 +1,47 @@
-import { useState } from "react";
+import { useRef } from "react";
 import { IoAddCircleOutline } from "react-icons/io5";
 
 const AddTodo = ({ onNewItem }) => {
-  const [todoName, setTodoName] = useState("");
-  const [dueDate, setDueDate] = useState("");
+  //state variables
 
-  const handleNameChange = (event) => {
-    setTodoName(event.target.value);
-  };
-  const handleDateChange = (event) => {
-    setDueDate(event.target.value);
-  };
+  //useRef variables
 
-  const handleAddButtonClicked = () => {
-    if (todoName != "") {
+  const todoNameElement = useRef();
+  const dueDateElement = useRef();
+
+  const handleAddButtonClicked = (event) => {
+    if (todoNameElement.current.value !== "") {
+      event.preventDefault();
+      const todoName = todoNameElement.current.value;
+      const dueDate = dueDateElement.current.value;
+      todoNameElement.current.value = "";
+      dueDateElement.current.value = "";
       onNewItem(todoName, dueDate);
     }
-    setDueDate("");
-    setTodoName("");
   };
 
   return (
-    <div className="row rm-row">
-      <div className="col-6">
-        <input
-          value={todoName}
-          type="text"
-          placeholder="Enter your task"
-          onChange={handleNameChange}
-        />
+    <form onSubmit={handleAddButtonClicked}>
+      <div className="container">
+        <div className="row rm-row">
+          <div className="col-6">
+            <input
+              ref={todoNameElement}
+              type="text"
+              placeholder="Enter your task"
+            />
+          </div>
+          <div className="col-4">
+            <input ref={dueDateElement} type="date" />
+          </div>
+          <div className="col-2">
+            <button type="submit" className="btn btn-success addBtn">
+              <IoAddCircleOutline className="svg" />
+            </button>
+          </div>
+        </div>
       </div>
-      <div className="col-4">
-        <input type="date" value={dueDate} onChange={handleDateChange} />
-      </div>
-      <div className="col-2">
-        <button
-          type="button"
-          className="btn btn-success"
-          onClick={handleAddButtonClicked}
-        >
-          <IoAddCircleOutline className="svg" disabled />
-        </button>
-      </div>
-    </div>
+    </form>
   );
 };
 
