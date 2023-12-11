@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
+import { TodoItemsContext } from "../store/todo-items-store";
 
 function WelcomeMessage() {
+  const contextObj = useContext(TodoItemsContext);
+  const todoItems = contextObj.todoItems;
   return (
     <center>
-      <p className="welcomeMessage">Enjoy your day</p>
+      {todoItems.length == 0 && (
+        <p className="welcomeMessage">Enjoy your day</p>
+      )}
     </center>
   );
 }
